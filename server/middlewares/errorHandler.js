@@ -1,7 +1,7 @@
 "use strict";
 
 const errorHandler = (err, req, res, next) => {
-//   console.log(err);
+  //   console.log(err);
   switch (err.name) {
     case "CastError":
       {
