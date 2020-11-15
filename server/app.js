@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 const Router = require("./routes");
+const errorHandler = require("./middlewares/errorHandler");
 
 const app = express();
 
@@ -18,9 +19,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(Router);
+app.use(errorHandler);
 
 mongoose
-  .connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
   .then(() => {
     console.log(`connected to mongoDB: ${mongoURI}`);
     app.listen(port, () =>
