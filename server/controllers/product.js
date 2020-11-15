@@ -86,7 +86,7 @@ class Product {
     }
   };
 
-  static delete = async (req, res, next) => {
+  static remove = async (req, res, next) => {
     try {
       const { id } = req.params;
 

@@ -1,39 +1,17 @@
 "use strict";
 
 const Router = require("express").Router();
+const productController = require("../controllers/product");
 
-// Router.get("/", (req, res, next) => {
-//   res.status(200).json({ message: `Product endpoint ready!` });
-// });
-
-Router.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: `get all products`,
-  });
-});
-
-Router.get("/:id", (req, res, next) => {
-  res.status(200).json({
-    message: `get product by id`,
-  });
-});
-
-Router.post("/", (req, res, next) => {
-  res.status(200).json({
-    message: `insert new product`,
-  });
-});
-
-Router.patch("/:id", (req, res, next) => {
-  res.status(200).json({
-    message: `update product by id`,
-  });
-});
-
-Router.delete("/:id", (req, res, next) => {
-  res.status(200).json({
-    message: `delete product by id`,
-  });
-});
+//get all products
+Router.get("/", productController.getAll);
+//get product by id
+Router.get("/:id", productController.getDetail);
+//create new product
+Router.post("/", productController.create);
+//update product by id
+Router.patch("/:id", productController.update);
+//remove product
+Router.delete("/:id", productController.remove);
 
 module.exports = Router;
